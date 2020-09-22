@@ -62,6 +62,7 @@ def main():
     [2] Memory informations
     [3] CPU informations
     [4] GPU informations
+    [5] Exit
 
     Choose an option: '''))
 
@@ -73,6 +74,8 @@ def main():
         pass
     elif option == 4:
         pass
+    elif option == 5:
+        exit()
     else:
         pass
 
