@@ -1,4 +1,5 @@
 import os
+import time
 import platform
 import psutil
 
@@ -77,7 +78,9 @@ def main():
     elif option == 5:
         exit()
     else:
-        pass
+        print("\n ####### Choose a valid option #######")
+        time.sleep(2)
+        main()
 
 
 if __name__ == '__main__':
