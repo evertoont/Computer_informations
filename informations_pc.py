@@ -1,9 +1,12 @@
 import os
 import platform
+import psutil
+
+# SYSTEM INFORMATIONS #
 
 def system_informations():
     clear_screen()
-    print("="*10, "System informations", "="*10)
+    print("="*10, "System Informations", "="*10)
     info = platform.uname()
 
     print(f'''
@@ -19,9 +22,31 @@ def system_informations():
     input("Press ENTER to return")
     main()
 
+# MEMORY INFORMATIONS #
+
+def memory_informations():
+    clear_screen()
+    print("="*10, "Memory Informations", "="*10)
+
+    memory = psutil.virtual_memory()
+
+    print(f'''
+    Total: {memory.total}
+    Available: {memory.available}
+    Used: {memory.used}
+    Percentage: {memory.percent} %
+    
+    ''')
+
+    input("Press ENTER to return")
+    main()
+
+#CLEAR SCREEN #
 
 def clear_screen():
     os.system("cls || clear")
+
+# MAIN FUNCTION #
 
 def main():
     clear_screen()
@@ -36,7 +61,7 @@ def main():
     if option == 1:
         system_informations()
     elif option == 2:
-        pass
+        memory_informations()
     elif option == 3:
         pass
     elif option == 4:
