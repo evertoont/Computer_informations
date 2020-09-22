@@ -1,6 +1,8 @@
+import os
 import platform
 
 def system_informations():
+    clear_screen()
     print("="*10, "System informations", "="*10)
     info = platform.uname()
 
@@ -17,7 +19,12 @@ def system_informations():
     input("Press ENTER to return")
     main()
 
+
+def clear_screen():
+    os.system("cls || clear")
+
 def main():
+    clear_screen()
     option = int(input('''
     [1] System informations
     [2] Memory informations
