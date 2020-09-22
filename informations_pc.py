@@ -24,6 +24,13 @@ def system_informations():
 
 # MEMORY INFORMATIONS #
 
+def size_convert(bytes, suffix='B'):
+    factor = 1024
+    for unit in ["", "K", "M", "G", "T", "P"]:
+        if bytes < factor:
+            return f"{bytes:.2f} {unit}{suffix}"
+        bytes /= factor
+
 def memory_informations():
     clear_screen()
     print("="*10, "Memory Informations", "="*10)
@@ -31,9 +38,9 @@ def memory_informations():
     memory = psutil.virtual_memory()
 
     print(f'''
-    Total: {memory.total}
-    Available: {memory.available}
-    Used: {memory.used}
+    Total: {size_convert(memory.total)}
+    Available: {size_convert(memory.available)}
+    Used: {size_convert(memory.used)}
     Percentage: {memory.percent} %
     
     ''')
