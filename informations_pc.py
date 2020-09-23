@@ -2,6 +2,7 @@ import os
 import time
 import platform
 import psutil
+from banner import banner
 
 # SYSTEM INFORMATIONS #
 
@@ -88,6 +89,7 @@ def clear_screen():
 
 def main():
     clear_screen()
+    banner()
     option = int(input('''
     [1] System informations
     [2] Memory informations
