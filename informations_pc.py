@@ -5,6 +5,7 @@ import psutil
 
 # SYSTEM INFORMATIONS #
 
+
 def system_informations():
     clear_screen()
     print("="*10, "System Informations", "="*10)
@@ -25,12 +26,14 @@ def system_informations():
 
 # MEMORY INFORMATIONS #
 
+
 def size_convert(bytes, suffix='B'):
     factor = 1024
     for unit in ["", "K", "M", "G", "T", "P"]:
         if bytes < factor:
             return f"{bytes:.2f} {unit}{suffix}"
         bytes /= factor
+
 
 def memory_informations():
     clear_screen()
@@ -49,12 +52,39 @@ def memory_informations():
     input("Press ENTER to return")
     main()
 
+# CPU INFORMATIONS #
+
+
+def cpu_informations():
+    clear_screen()
+    print("="*10, "CPU Informations", "="*10)
+
+    cpu = psutil.cpu_freq()
+
+    print(f'''
+    Physical cores: {psutil.cpu_count(logical=False)}
+    Total cores: {psutil.cpu_count(logical=True)}
+    Max frequency: {cpu.max:.2f} Mhz
+    Min frequency: {cpu.min:.2f} Mhz
+    Current frequency: {cpu.current:.2f} Mhz
+
+    CPU usage per Core:
+    ''')
+    for core, percentage in enumerate(psutil.cpu_percent(percpu=True, interval=1)):
+        print(f"\tCore {core}: {percentage}%")
+    print(f"\n \tTotal CPU usage: {psutil.cpu_percent()}% \n")
+
+    input("Press ENTER to return")
+    main()
+
 #CLEAR SCREEN #
+
 
 def clear_screen():
     os.system("cls || clear")
 
 # MAIN FUNCTION #
+
 
 def main():
     clear_screen()
@@ -72,7 +102,7 @@ def main():
     elif option == 2:
         memory_informations()
     elif option == 3:
-        pass
+        cpu_informations()
     elif option == 4:
         pass
     elif option == 5:
