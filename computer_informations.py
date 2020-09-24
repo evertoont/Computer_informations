@@ -2,6 +2,8 @@ import os
 import time
 import platform
 import psutil
+import GPUtil
+from tabulate import tabulate
 from banner import banner
 
 # SYSTEM INFORMATIONS #
@@ -78,6 +80,36 @@ def cpu_informations():
     input("Press ENTER to return")
     main()
 
+
+# CPU INFORMATIONS #
+
+def gpu_informations():
+    clear_screen()
+    print("="*40, "GPU Informations", "="*40)
+
+    gpus = GPUtil.getGPUs()
+    gpus_list = []
+
+    for gpu in gpus:
+        gpu_id = gpu.id
+        gpu_name = gpu.name
+        gpu_load = f"{gpu.load*100} %"
+        gpu_free_memory = f"{gpu.memoryFree} MB"
+        gpu_used_memory = f"{gpu.memoryUsed} MB"
+        gpu_total_memory = f"{gpu.memoryTotal} MB"
+        gpu_temperature = f"{gpu.temperature} °C"
+        gpu_uuid = gpu.uuid
+
+        gpus_list.append((
+            gpu_id, gpu_name, gpu_load, gpu_free_memory, gpu_used_memory, gpu_total_memory, gpu_temperature, gpu_uuid
+        ))
+
+    print(tabulate(gpus_list, headers=("Id", "Name", "Load", "Free memory",
+                                       "Used memory", "Total memory", "Temperature", "Uuid")))
+
+    input("\nPress ENTER to return")
+    main()
+
 #CLEAR SCREEN #
 
 
@@ -106,7 +138,7 @@ def main():
     elif option == 3:
         cpu_informations()
     elif option == 4:
-        pass
+        gpu_informations()
     elif option == 5:
         exit()
     else:
