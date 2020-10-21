@@ -16,6 +16,11 @@ pip install psutil
 pip install tabulate
 ```
 
+### :computer: How to run the script
+```
+python3 computer_informations.py
+```
+
 ### :camera: Project image
 ![Running program image](https://user-images.githubusercontent.com/55769021/94216117-f0752980-feb4-11ea-82b9-74094cad55e4.png) <br>
 
