@@ -16,7 +16,7 @@ pip install psutil
 pip install tabulate
 ```
 
-### :computer: How to run the script
+### :computer: How to run
 ```
 python3 computer_informations.py
 ```
